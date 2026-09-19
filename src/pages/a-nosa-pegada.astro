@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ContactBlock from '../components/ContactBlock.astro';
+import { withBase } from '../utils/paths';
 const stories = [
   {
     title: 'Un ano máis… as Seibas na UAc',
@@ -36,8 +37,8 @@ const stories = [
     {stories.map((story, index) => (
       <article class="story">
         <picture>
-          <source srcset={`/assets/images/${story.image}`} type="image/webp" />
-          <img src={`/assets/images/${story.image.replace('.webp', '.jpg')}`} alt={`Experiencia ${story.title} de As Seibas`} width="900" height="675" loading={index === 0 ? 'eager' : 'lazy'} />
+          <source srcset={withBase(`/assets/images/${story.image}`)} type="image/webp" />
+          <img src={withBase(`/assets/images/${story.image.replace('.webp', '.jpg')}`)} alt={`Experiencia ${story.title} de As Seibas`} width="900" height="675" loading={index === 0 ? 'eager' : 'lazy'} />
         </picture>
         <div>
           <h2>{story.title}</h2>

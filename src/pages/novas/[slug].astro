@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import Layout from '../../layouts/Layout.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
+import { withBase } from '../../utils/paths';
 import { newsItems } from '../../data/site';
 import { ArrowLeft, ExternalLink } from '@lucide/astro';
 
@@ -13,7 +14,7 @@ const fallback = item.image.replace('.webp', '.jpg');
   <article class="news-detail">
     <header class={`news-detail-header news-detail-header--${item.color}`}>
       <div class="shell">
-        <a class="back-link" href="/novas/"><ArrowLeft size={18} stroke-width={1.75} aria-hidden="true" />Todas as novas</a>
+        <a class="back-link" href={withBase('/novas/')}><ArrowLeft size={18} stroke-width={1.75} aria-hidden="true" />Todas as novas</a>
         <h1>{item.title}</h1>
         <p class="news-detail-meta">{item.category}</p>
       </div>
@@ -21,8 +22,8 @@ const fallback = item.image.replace('.webp', '.jpg');
     <div class="shell news-detail-grid">
       <figure class="news-detail-image">
         <picture>
-          <source srcset={`/assets/images/${item.image}`} type="image/webp" />
-          <img src={`/assets/images/${fallback}`} alt={item.imageAlt} width="1000" height="1000" fetchpriority="high" />
+          <source srcset={withBase(`/assets/images/${item.image}`)} type="image/webp" />
+          <img src={withBase(`/assets/images/${fallback}`)} alt={item.imageAlt} width="1000" height="1000" fetchpriority="high" />
         </picture>
       </figure>
       <div class="rich-text news-detail-copy">

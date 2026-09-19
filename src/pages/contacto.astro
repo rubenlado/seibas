@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import { site } from '../data/site';
+import { withBase } from '../utils/paths';
 import { ExternalLink, Mail, MapPin, Phone } from '@lucide/astro';
 ---
 <Layout title="Contacto" description="Contacta con As Seibas Espazo Educativo en Bertamiráns.">
@@ -20,7 +21,7 @@ import { ExternalLink, Mail, MapPin, Phone } from '@lucide/astro';
       </div>
       <label>Correo electrónico <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required /></label>
       <label>Comentario ou mensaxe <span aria-hidden="true">*</span><textarea name="mensaxe" rows="6" required></textarea></label>
-      <label class="check-field"><input name="privacidade" type="checkbox" required /><span>Lin e acepto o <a href="/aviso-legal/">aviso legal</a> e consinto o tratamento dos datos para responder á miña consulta.</span></label>
+      <label class="check-field"><input name="privacidade" type="checkbox" required /><span>Lin e acepto o <a href={withBase('/aviso-legal/')}>aviso legal</a> e consinto o tratamento dos datos para responder á miña consulta.</span></label>
       <button class="button button--dark" type="submit">Preparar mensaxe</button>
       <p class="form-note">Ao enviar abrirase a túa aplicación de correo. Esta web non almacena datos.</p>
     </form>
