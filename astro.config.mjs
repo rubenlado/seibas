@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://asseibas.com',
+  site: 'https://rubenlado.github.io',
+  base: '/seibas',
   output: 'static',
   trailingSlash: 'always',
   build: {

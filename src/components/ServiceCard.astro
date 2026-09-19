@@ -1,10 +1,12 @@
 ---
 import { ArrowRight } from '@lucide/astro';
+import { withBase } from '../utils/paths';
 interface Props { slug: string; title: string; short: string; color: string; }
 const { slug, title, short, color } = Astro.props;
+const href = withBase(`/servizos/${slug}/`);
 ---
 <article class={`service-card service-card--${color}`}>
-  <h3><a href={`/servizos/${slug}/`}>{title}</a></h3>
+  <h3><a href={href}>{title}</a></h3>
   <p>{short}</p>
-  <a class="text-link" href={`/servizos/${slug}/`} aria-label={`Coñecer ${title}`}>Coñecer o servizo <ArrowRight size={16} stroke-width={1.75} aria-hidden="true" /></a>
+  <a class="text-link" href={href} aria-label={`Coñecer ${title}`}>Coñecer o servizo <ArrowRight size={16} stroke-width={1.75} aria-hidden="true" /></a>
 </article>

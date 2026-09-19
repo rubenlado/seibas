@@ -1,5 +1,6 @@
 ---
 import { navigation, site } from '../data/site';
+import { withBase } from '../utils/paths';
 import { AtSign, Mail, MapPin, Phone } from '@lucide/astro';
 const year = new Date().getFullYear();
 ---
@@ -7,7 +8,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="shell footer-grid">
     <div class="footer-brand">
-      <img src="/assets/logo.png" width="300" height="169" alt="As Seibas Espazo Educativo" loading="lazy" />
+      <img src={withBase('/assets/logo.png')} width="300" height="169" alt="As Seibas Espazo Educativo" loading="lazy" />
       <p>Corazóns, non só cabezas na escola.</p>
     </div>
     <div>
@@ -18,13 +19,13 @@ const year = new Date().getFullYear();
     </div>
     <div>
       <h2>Explora</h2>
-      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navigation.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
     </div>
   </div>
   <div class="shell footer-bottom">
     <p>© {year} {site.legalName}</p>
     <div>
-      <a href="/aviso-legal/">Aviso legal</a>
+      <a href={withBase('/aviso-legal/')}>Aviso legal</a>
       <a class="footer-social" href={site.instagram} rel="me noopener" target="_blank"><AtSign size={18} stroke-width={1.75} aria-hidden="true" /><span>Instagram</span></a>
     </div>
   </div>

@@ -1,6 +1,7 @@
 ---
 import NewsCard from './NewsCard.astro';
 import { newsItems } from '../data/site';
+import { withBase } from '../utils/paths';
 import { ChevronLeft, ChevronRight } from '@lucide/astro';
 ---
 <section class="section news-home" aria-labelledby="news-home-title" data-news-carousel>
@@ -17,7 +18,7 @@ import { ChevronLeft, ChevronRight } from '@lucide/astro';
     <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="Nova seguinte" title="Nova seguinte"><ChevronRight size={28} stroke-width={1.75} aria-hidden="true" /></button>
   </div>
   <div class="shell news-all-link">
-    <a class="button button--light" href="/novas/">Ver todas as novas</a>
+    <a class="button button--light" href={withBase('/novas/')}>Ver todas as novas</a>
   </div>
 </section>
 

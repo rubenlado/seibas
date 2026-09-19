@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { withBase } from '../utils/paths';
 import '../styles/global.css';
 
 interface Props {
@@ -16,14 +17,14 @@ const {
   image = '/assets/images/og-as-seibas.jpg',
 } = Astro.props;
 const pageTitle = title === site.name ? `${site.name} | Espazo Educativo` : `${title} | ${site.name}`;
-const canonical = new URL(Astro.url.pathname, site.url);
-const imageUrl = new URL(image, site.url);
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const imageUrl = new URL(withBase(image), Astro.site ?? site.url);
 const organization = {
   '@context': 'https://schema.org',
   '@type': 'EducationalOrganization',
   name: site.legalName,
   url: site.url,
-  logo: `${site.url}/assets/logo.png`,
+  logo: new URL(withBase('/assets/logo.png'), Astro.site ?? site.url).href,
   email: site.email,
   telephone: site.phone,
   address: {
@@ -46,7 +47,7 @@ const organization = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f5cf00" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="icon" type="image/png" href={withBase('/assets/favicon.png')} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="gl_ES" />
     <meta property="og:title" content={pageTitle} />

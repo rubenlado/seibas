@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/paths';
 interface Props {
   title: string;
   text?: string;
@@ -7,13 +8,14 @@ interface Props {
   compact?: boolean;
 }
 const { title, text, image, imageAlt = '', compact = false } = Astro.props;
-const fallbackImage = image?.endsWith('.webp') ? image.replace(/\.webp$/, '.jpg') : image;
+const imageSrc = image ? withBase(image) : undefined;
+const fallbackImage = imageSrc?.endsWith('.webp') ? imageSrc.replace(/\.webp$/, '.jpg') : imageSrc;
 ---
 
 <section class:list={['page-hero', { 'page-hero--compact': compact, 'page-hero--image': image }]}>
   {image && (
     <picture class="page-hero-picture">
-      {image.endsWith('.webp') && <source srcset={image} type="image/webp" />}
+      {imageSrc?.endsWith('.webp') && <source srcset={imageSrc} type="image/webp" />}
       <img class="page-hero-media" src={fallbackImage} alt={imageAlt} width="1600" height="1000" fetchpriority="high" />
     </picture>
   )}

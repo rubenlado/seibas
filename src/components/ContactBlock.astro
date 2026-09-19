@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { withBase } from '../utils/paths';
 import { ArrowRight, Phone } from '@lucide/astro';
 interface Props { title?: string; text?: string; }
 const { title = 'Falamos?', text = 'Cóntanos que precisas. Estaremos encantadas de coñecervos e buscar xuntas a mellor forma de acompañarvos.' } = Astro.props;
@@ -12,7 +13,7 @@ const { title = 'Falamos?', text = 'Cóntanos que precisas. Estaremos encantadas
     </div>
     <div class="contact-actions">
       <a class="button button--dark" href={`tel:${site.phone}`}><Phone size={20} stroke-width={1.75} aria-hidden="true" />Chamar ao {site.phoneDisplay}</a>
-      <a class="button button--light" href="/contacto/">Ver contacto<ArrowRight size={20} stroke-width={1.75} aria-hidden="true" /></a>
+      <a class="button button--light" href={withBase('/contacto/')}>Ver contacto<ArrowRight size={20} stroke-width={1.75} aria-hidden="true" /></a>
     </div>
   </div>
 </section>

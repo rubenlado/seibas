@@ -1,14 +1,15 @@
 ---
 import { navigation } from '../data/site';
+import { withBase } from '../utils/paths';
 import { Menu, X } from '@lucide/astro';
 const path = Astro.url.pathname;
-const isCurrent = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+const isCurrent = (href: string) => href === '/' ? path === withBase('/') : path.startsWith(withBase(href));
 ---
 
 <header class="site-header">
   <div class="header-inner shell">
-    <a class="brand" href="/" aria-label="As Seibas, inicio">
-      <img src="/assets/logo.png" width="300" height="169" alt="As Seibas Espazo Educativo" />
+    <a class="brand" href={withBase('/')} aria-label="As Seibas, inicio">
+      <img src={withBase('/assets/logo.png')} width="300" height="169" alt="As Seibas Espazo Educativo" />
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
       <Menu class="menu-icon menu-icon--open" size={24} stroke-width={1.75} aria-hidden="true" />
@@ -16,9 +17,9 @@ const isCurrent = (href: string) => href === '/' ? path === '/' : path.startsWit
     </button>
     <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
       {navigation.map((item) => (
-        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+        <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
-      <a class="nav-contact" href="/contacto/">Contacto</a>
+      <a class="nav-contact" href={withBase('/contacto/')}>Contacto</a>
     </nav>
   </div>
 </header>

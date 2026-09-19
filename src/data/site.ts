@@ -2,7 +2,7 @@ export const site = {
   name: 'As Seibas',
   legalName: 'As Seibas Espazo Educativo, S.C.',
   description: 'Espazo educativo en Bertamiráns: pedagoxía, creatividade e acompañamento respectuoso á infancia e ás familias.',
-  url: 'https://asseibas.com',
+  url: 'https://rubenlado.github.io/seibas',
   email: 'administracion@asseibas.com',
   phoneDisplay: '614 256 717',
   phone: '+34614256717',
