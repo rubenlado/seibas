@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import NewsCarousel from '../components/NewsCarousel.astro';
+import { services } from '../data/site';
+import { ArrowRight, MapPin } from '@lucide/astro';
+---
+<Layout>
+  <section class="home-hero">
+    <picture class="home-hero-picture">
+      <source srcset="/assets/images/hero.avif" type="image/avif" />
+      <source srcset="/assets/images/hero.webp" type="image/webp" />
+      <img class="home-hero-image" src="/assets/images/hero.jpg" alt="Crianzas experimentando nun laboratorio creativo de As Seibas" width="1600" height="1000" fetchpriority="high" />
+    </picture>
+    <div class="home-hero-shade"></div>
+    <div class="shell home-hero-content">
+      <h1>As Seibas</h1>
+      <p class="home-hero-lead">Un lugar para facer, sentir e medrar en comunidade.</p>
+      <p class="home-hero-meta"><MapPin size={18} stroke-width={1.75} aria-hidden="true" />Espazo educativo en Bertamiráns</p>
+      <div class="hero-actions">
+        <a class="button button--yellow" href="/servizos/">Descubrir os servizos</a>
+        <a class="button button--ghost" href="/o-proxecto/">Coñecer o proxecto</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-band">
+    <div class="shell split-intro">
+      <p class="statement">Educamos para abrir posibilidades, respectando os tempos e a cultura da infancia.</p>
+      <div class="prose">
+        <p>As Seibas é un proxecto erguido dende a intención do que supón o “partilhar”. Dende o querer compartir unha paixón, un tempo, un espazo e unhas vivencias cunha comunidade que educa e transforma.</p>
+        <a class="text-link" href="/o-proxecto/">A nosa maneira de entender a educación <ArrowRight size={16} stroke-width={1.75} aria-hidden="true" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NewsCarousel />
+
+  <section class="section shell">
+    <SectionIntro title="Servizos que parten de cada persoa" text="Propostas educativas flexibles, creativas e respectuosas coa diversidade." />
+    <div class="services-grid">
+      {services.map((service) => <ServiceCard {...service} />)}
+    </div>
+  </section>
+
+  <section class="photo-story">
+    <div class="shell photo-story-grid">
+      <div class="photo-story-copy">
+        <h2>O descubrimento activo como canle</h2>
+        <p>Os laboratorios son espazos de traballo e construción de aprendizaxes que empregan a experimentación, o sensorial e a cooperación.</p>
+        <a class="button button--dark" href="/servizos/laboratorios-creativos/">Entrar nos laboratorios</a>
+      </div>
+      <div class="photo-pair">
+        <picture><source srcset="/assets/images/laboratorio-1.webp" type="image/webp" /><img src="/assets/images/laboratorio-1.jpg" alt="Experiencia creativa nun laboratorio de As Seibas" width="700" height="933" loading="lazy" /></picture>
+        <picture><source srcset="/assets/images/laboratorio-2.webp" type="image/webp" /><img src="/assets/images/laboratorio-2.jpg" alt="Materiais e xogo nunha actividade educativa" width="700" height="933" loading="lazy" /></picture>
+      </div>
+    </div>
+  </section>
+  <ContactBlock />
+</Layout>

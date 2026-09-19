@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+---
+<Layout title="Quen somos" description="Coñece ás persoas que fan posible As Seibas.">
+  <Hero title="Quen somos?" text="Dúas persoas acompañadas da súa xente. Un proxecto construído en comunidade." compact />
+  <section class="section shell people-intro">
+    <p class="lead">Dicir que tras este proxecto son dúas as persoas que se atopan nel e que o constrúen sería ir na contra do sentido lóxico. É así que afirmamos que este proxecto se ergue dende o facer e o sentir de moitas persoas.</p>
+    <p>Dende as que sentimos que debiamos construílo ata as que nos axudaron a facelo posible.</p>
+  </section>
+  <section class="people-band">
+    <div class="shell people-grid">
+      <article class="person">
+        <h2>Eva</h2>
+        <p class="person-label">Pedagoxía · Psicopedagoxía</p>
+        <p>Graduada en pedagoxía con máster en Psicopedagoxía e formación específica en trastornos do aprendizaxe, da conducta e afectivos e na estimulación sensorial e atención temperá. Da mesma maneira, con formación no ámbito da Logopedia, Trastornos do Lenguaxe e da fala.</p>
+        <p>O seu xeito de actuar e de (con)vivir tradúcea no ollar como unha persoa empática e preocupada pola xente. Sensible, reflexiva e crítica en todas as esferas que configuran o seu día a día. Colexiada 2669 CGCOPYP e acreditación clínica no ADOS-2. Actual estudante do grao en Psicoloxía.</p>
+      </article>
+      <article class="person person--yellow">
+        <h2>Sonia</h2>
+        <p class="person-label">Pedagoxía · Educación infantil</p>
+        <p>Graduada en pedagoxía e en educación infantil na mención artística. (Con)vive e transmite no facer o que supón o significado de comunidade.</p>
+        <p>Defende a cultura da infancia e a posibilidade de que unha educación diferente, respectuosa, adaptada e flexible é posible se poñemos o ollar nas artes. Actual estudante do mestrado de “Filosofía para crianzas” na Universidade das Açores.</p>
+      </article>
+    </div>
+  </section>
+  <ContactBlock />
+</Layout>

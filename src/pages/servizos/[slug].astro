@@ -1,0 +1,31 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { services } from '../../data/site';
+import { ArrowLeft } from '@lucide/astro';
+
+export const getStaticPaths = (() => services.map((service) => ({ params: { slug: service.slug }, props: { service } }))) satisfies GetStaticPaths;
+const { service } = Astro.props;
+---
+<Layout title={service.title} description={service.short}>
+  <Hero title={service.title} text={service.short} compact />
+  <section class="section shell service-detail">
+    <a class="back-link" href="/servizos/"><ArrowLeft size={18} stroke-width={1.75} aria-hidden="true" />Todos os servizos</a>
+    <div class="rich-text">
+      {service.paragraphs.map((paragraph: string, index: number) => index === 0 ? <p class="lead">{paragraph}</p> : <p>{paragraph}</p>)}
+    </div>
+    {'gallery' in service && service.gallery && (
+      <div class="service-gallery">
+        {service.gallery.map((image: string, index: number) => (
+          <picture>
+            <source srcset={`/assets/images/${image}`} type="image/webp" />
+            <img src={`/assets/images/${image.replace('.webp', '.jpg')}`} alt={`Laboratorio creativo de As Seibas, imaxe ${index + 1}`} width="700" height="933" loading="lazy" />
+          </picture>
+        ))}
+      </div>
+    )}
+  </section>
+  <ContactBlock title={`Interésache ${service.title.toLowerCase()}?`} />
+</Layout>

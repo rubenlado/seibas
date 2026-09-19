@@ -1,0 +1,50 @@
+---
+import NewsCard from './NewsCard.astro';
+import { newsItems } from '../data/site';
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
+---
+<section class="section news-home" aria-labelledby="news-home-title" data-news-carousel>
+  <div class="shell news-heading">
+    <h2 id="news-home-title">Novas de As Seibas</h2>
+  </div>
+  <div class="news-carousel-frame">
+    <button class="carousel-arrow carousel-arrow--previous" type="button" data-carousel-prev aria-label="Nova anterior" title="Nova anterior"><ChevronLeft size={28} stroke-width={1.75} aria-hidden="true" /></button>
+    <div class="news-track-shell">
+      <div class="news-track" data-carousel-track tabindex="0" aria-label="Últimas novas">
+        {newsItems.map((item) => <NewsCard {...item} />)}
+      </div>
+    </div>
+    <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="Nova seguinte" title="Nova seguinte"><ChevronRight size={28} stroke-width={1.75} aria-hidden="true" /></button>
+  </div>
+  <div class="shell news-all-link">
+    <a class="button button--light" href="/novas/">Ver todas as novas</a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-news-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>('[data-carousel-track]');
+    const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    if (!track || !previous || !next) return;
+
+    const updateControls = () => {
+      const maximum = track.scrollWidth - track.clientWidth;
+      const hasOverflow = maximum > 2;
+      carousel.classList.toggle('has-overflow', hasOverflow);
+      previous.hidden = !hasOverflow || track.scrollLeft <= 2;
+      next.hidden = !hasOverflow || track.scrollLeft >= maximum - 2;
+    };
+
+    const move = (direction: number) => {
+      const card = track.querySelector<HTMLElement>('.news-card');
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({ left: direction * ((card?.offsetWidth ?? track.clientWidth) + gap), behavior: 'smooth' });
+    };
+    previous?.addEventListener('click', () => move(-1));
+    next?.addEventListener('click', () => move(1));
+    track.addEventListener('scroll', updateControls, { passive: true });
+    new ResizeObserver(updateControls).observe(track);
+    updateControls();
+  });
+</script>

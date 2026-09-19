@@ -1,0 +1,116 @@
+:root {
+  /* Color primitives */
+  --color-yellow-500: #f5cf00;
+  --color-yellow-100: #fff5b5;
+  --color-green-700: #3e6653;
+  --color-green-100: #dbe8df;
+  --color-blue-700: #37718e;
+  --color-blue-100: #dcecf3;
+  --color-coral-600: #d96850;
+  --color-coral-100: #f7ddd7;
+  --color-ink: #20201d;
+  --color-ink-muted: #55564f;
+  --color-paper: #fffdf7;
+  --color-white: #ffffff;
+  --color-media: #f3f2ed;
+
+  /* Semantic color */
+  --color-brand: var(--color-yellow-500);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+  --color-surface: var(--color-paper);
+  --color-surface-raised: var(--color-white);
+  --color-border: rgb(32 32 29 / 18%);
+  --color-border-strong: rgb(32 32 29 / 34%);
+  --color-focus: var(--color-blue-700);
+  --color-on-dark: var(--color-white);
+
+  /* Type families */
+  --font-sans: 'Source Sans 3 Variable', 'Segoe UI', sans-serif;
+  --font-display: 'Source Serif 4 Variable', Georgia, serif;
+
+  /* Type scale */
+  --text-display: 6rem;
+  --text-page-title: 4.5rem;
+  --text-section-title: 3rem;
+  --text-statement: 3.75rem;
+  --text-card-title: 2rem;
+  --text-subtitle: 1.5rem;
+  --text-lead: 1.375rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+
+  /* Line-height */
+  --leading-display: 0.98;
+  --leading-heading: 1.08;
+  --leading-tight: 1.25;
+  --leading-body: 1.6;
+  --leading-reading: 1.72;
+
+  /* Spacing: 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-section: 7rem;
+  --space-section-compact: 5rem;
+
+  /* Layout */
+  --container: 73.75rem;
+  --shell: min(var(--container), calc(100% - 2.5rem));
+  --measure: 72ch;
+  --measure-narrow: 56ch;
+  --header-height: 5.5rem;
+
+  /* Controls and shape */
+  --control-height: 3rem;
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+  --radius-sm: 0.125rem;
+  --radius-control: 0.25rem;
+  --radius-card: 0;
+
+  /* Depth and motion */
+  --shadow-overlay: 0 0.5rem 1.5rem rgb(32 32 29 / 16%);
+  --shadow-menu: 0 0.75rem 1.75rem rgb(32 32 29 / 10%);
+  --duration-fast: 160ms;
+  --duration-medium: 240ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 56.25rem) {
+  :root {
+    --text-display: 5rem;
+    --text-page-title: 4rem;
+    --text-section-title: 2.75rem;
+    --text-statement: 3.25rem;
+    --text-card-title: 1.875rem;
+    --space-section: 6rem;
+    --space-section-compact: 4rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --text-display: 3.75rem;
+    --text-page-title: 3.25rem;
+    --text-section-title: 2.375rem;
+    --text-statement: 2.75rem;
+    --text-card-title: 1.75rem;
+    --text-lead: 1.25rem;
+    --text-body-lg: 1.0625rem;
+    --space-section: 4.5rem;
+    --space-section-compact: 3.5rem;
+    --shell: min(var(--container), calc(100% - 1.75rem));
+    --header-height: 5rem;
+  }
+}

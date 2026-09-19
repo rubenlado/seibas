@@ -1,0 +1,31 @@
+---
+import { navigation, site } from '../data/site';
+import { AtSign, Mail, MapPin, Phone } from '@lucide/astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <img src="/assets/logo.png" width="300" height="169" alt="As Seibas Espazo Educativo" loading="lazy" />
+      <p>Corazóns, non só cabezas na escola.</p>
+    </div>
+    <div>
+      <h2>Atópanos</h2>
+      <address class="footer-contact-line"><MapPin size={20} stroke-width={1.75} aria-hidden="true" /><span>{site.address}</span></address>
+      <a class="footer-contact-line" href={`tel:${site.phone}`}><Phone size={20} stroke-width={1.75} aria-hidden="true" /><span>{site.phoneDisplay}</span></a>
+      <a class="footer-contact-line" href={`mailto:${site.email}`}><Mail size={20} stroke-width={1.75} aria-hidden="true" /><span>{site.email}</span></a>
+    </div>
+    <div>
+      <h2>Explora</h2>
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <p>© {year} {site.legalName}</p>
+    <div>
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a class="footer-social" href={site.instagram} rel="me noopener" target="_blank"><AtSign size={18} stroke-width={1.75} aria-hidden="true" /><span>Instagram</span></a>
+    </div>
+  </div>
+</footer>

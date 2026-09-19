@@ -1,0 +1,28 @@
+---
+import { ArrowRight } from '@lucide/astro';
+interface Props {
+  slug: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  imageAlt: string;
+  color: string;
+}
+const { slug, category, title, excerpt, image, imageAlt, color } = Astro.props;
+const fallback = image.replace('.webp', '.jpg');
+---
+<article class={`news-card news-card--${color}`}>
+  <a class="news-card-image" href={`/novas/${slug}/`} tabindex="-1" aria-hidden="true">
+    <picture>
+      <source srcset={`/assets/images/${image}`} type="image/webp" />
+      <img src={`/assets/images/${fallback}`} alt={imageAlt} width="800" height="800" loading="lazy" />
+    </picture>
+  </a>
+  <div class="news-card-body">
+    <h3><a href={`/novas/${slug}/`}>{title}</a></h3>
+    <p class="news-category">{category}</p>
+    <p>{excerpt}</p>
+    <a class="text-link" href={`/novas/${slug}/`}>Ler a nova <ArrowRight size={16} stroke-width={1.75} aria-hidden="true" /></a>
+  </div>
+</article>

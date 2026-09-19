@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.agents/
+.claude/
+.codex/
+.impeccable/
+.DS_Store
+*.log

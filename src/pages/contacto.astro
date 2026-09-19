@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../data/site';
+import { ExternalLink, Mail, MapPin, Phone } from '@lucide/astro';
+---
+<Layout title="Contacto" description="Contacta con As Seibas Espazo Educativo en Bertamiráns.">
+  <Hero title="Contacto" text="Achégate ao noso local ou cóntanos en que podemos axudarche." compact />
+  <section class="section shell contact-page">
+    <div class="contact-details">
+      <div class="contact-detail"><MapPin size={24} stroke-width={1.75} aria-hidden="true" /><div><p class="detail-label">Onde</p><address>{site.address}</address></div></div>
+      <div class="contact-detail"><Phone size={24} stroke-width={1.75} aria-hidden="true" /><div><p class="detail-label">Teléfono e WhatsApp</p><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></div></div>
+      <div class="contact-detail"><Mail size={24} stroke-width={1.75} aria-hidden="true" /><div><p class="detail-label">Correo</p><a href={`mailto:${site.email}`}>{site.email}</a></div></div>
+      <p>Estaremos encantadas de coñecervos!</p>
+    </div>
+    <form class="contact-form" id="contact-form">
+      <div class="field-row">
+        <label>Nome e apelidos <span aria-hidden="true">*</span><input name="nome" autocomplete="name" required /></label>
+        <label>Teléfono<input name="telefono" type="tel" autocomplete="tel" /></label>
+      </div>
+      <label>Correo electrónico <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required /></label>
+      <label>Comentario ou mensaxe <span aria-hidden="true">*</span><textarea name="mensaxe" rows="6" required></textarea></label>
+      <label class="check-field"><input name="privacidade" type="checkbox" required /><span>Lin e acepto o <a href="/aviso-legal/">aviso legal</a> e consinto o tratamento dos datos para responder á miña consulta.</span></label>
+      <button class="button button--dark" type="submit">Preparar mensaxe</button>
+      <p class="form-note">Ao enviar abrirase a túa aplicación de correo. Esta web non almacena datos.</p>
+    </form>
+  </section>
+  <section class="map-band">
+    <div class="shell">
+      <h2>Rúa Pedregal 4 baixo</h2>
+      <a class="button button--yellow" href="https://www.openstreetmap.org/search?query=R%C3%BAa%20Pedregal%204%20Bertamir%C3%A1ns" target="_blank" rel="noopener">Abrir no mapa <ExternalLink size={20} stroke-width={1.75} aria-hidden="true" /></a>
+    </div>
+  </section>
+</Layout>
+<script define:vars={{ email: site.email }}>
+  document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const subject = `Consulta web de ${data.get('nome')}`;
+    const body = `Nome: ${data.get('nome')}\nTeléfono: ${data.get('telefono') || '-'}\nCorreo: ${data.get('email')}\n\n${data.get('mensaxe')}`;
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

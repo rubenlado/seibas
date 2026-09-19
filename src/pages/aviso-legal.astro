@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../data/site';
+---
+<Layout title="Aviso legal" description="Información legal de As Seibas Espazo Educativo.">
+  <Hero title="Aviso legal" compact />
+  <section class="section shell legal-copy">
+    <h2>Titular do sitio web</h2>
+    <dl>
+      <dt>Denominación social</dt><dd>{site.legalName}</dd>
+      <dt>CIF</dt><dd>J56948540</dd>
+      <dt>Domicilio social</dt><dd>{site.address}, España.</dd>
+      <dt>Teléfono</dt><dd><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></dd>
+      <dt>Correo electrónico</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+    </dl>
+    <h2>Privacidade e datos</h2>
+    <p>Os datos enviados voluntariamente por correo electrónico empréganse unicamente para atender a consulta e xestionar a potencial relación comercial ou profesional. Podes exercer os dereitos de acceso, rectificación, supresión, limitación, oposición e portabilidade escribindo ao correo indicado.</p>
+    <h2>Cookies</h2>
+    <p>Esta versión estática da web non emprega cookies analíticas, publicitarias nin de seguimento.</p>
+  </section>
+</Layout>

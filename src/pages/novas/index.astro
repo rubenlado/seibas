@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { newsItems } from '../../data/site';
+---
+<Layout title="Novas" description="Actualidade, axenda e experiencias de As Seibas Espazo Educativo.">
+  <Hero title="Novas" text="Axenda, recursos e experiencias que nacen no día a día de As Seibas." compact />
+  <section class="section shell news-index" aria-label="Todas as novas">
+    {newsItems.map((item) => <NewsCard {...item} />)}
+  </section>
+  <ContactBlock title="Queres saber máis?" />
+</Layout>

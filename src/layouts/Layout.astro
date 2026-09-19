@@ -1,0 +1,68 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = site.name,
+  description = site.description,
+  image = '/assets/images/og-as-seibas.jpg',
+} = Astro.props;
+const pageTitle = title === site.name ? `${site.name} | Espazo Educativo` : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, site.url);
+const imageUrl = new URL(image, site.url);
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: site.legalName,
+  url: site.url,
+  logo: `${site.url}/assets/logo.png`,
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rúa Pedregal 4 baixo',
+    addressLocality: 'Bertamiráns',
+    postalCode: '15220',
+    addressRegion: 'A Coruña',
+    addressCountry: 'ES',
+  },
+};
+---
+
+<!doctype html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5cf00" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="gl_ES" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contido">Saltar ao contido</a>
+    <Header />
+    <main id="contido">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

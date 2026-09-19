@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  text?: string;
+  image?: string;
+  imageAlt?: string;
+  compact?: boolean;
+}
+const { title, text, image, imageAlt = '', compact = false } = Astro.props;
+const fallbackImage = image?.endsWith('.webp') ? image.replace(/\.webp$/, '.jpg') : image;
+---
+
+<section class:list={['page-hero', { 'page-hero--compact': compact, 'page-hero--image': image }]}>
+  {image && (
+    <picture class="page-hero-picture">
+      {image.endsWith('.webp') && <source srcset={image} type="image/webp" />}
+      <img class="page-hero-media" src={fallbackImage} alt={imageAlt} width="1600" height="1000" fetchpriority="high" />
+    </picture>
+  )}
+  <div class="shell page-hero-inner">
+    <h1>{title}</h1>
+    {text && <p class="hero-text">{text}</p>}
+    <slot />
+  </div>
+</section>

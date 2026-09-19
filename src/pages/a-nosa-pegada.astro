@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+const stories = [
+  {
+    title: 'Un ano máis… as Seibas na UAc',
+    image: 'pegada-filosofancias.webp',
+    text: ['Queremos aproveitar a nosa segunda visita ás Filosofâncias, celebradas en Ponta Delgada, para achegarvos un pouco do que alí aconteceu e, ao mesmo tempo, do que significa —en termos xerais— a filosofía para crianzas.', 'A filosofía para crianzas é, para nós, unha práctica lóxica e coherente coa condición social que caracteriza ás persoas. Trátase dunha práctica que abre espazo ao posible e ao diálogo; unha práctica que cuestiona as xerarquías establecidas e favorece a autonomía do pensamento infantil ao situar á persoa adulta nun plano horizontal respecto da infancia. É un tempo de posibilidades no que se permite explorar as palabras e os conceptos sen medo ao erro, facendo da indagación e da pregunta o centro da experiencia. En definitiva, unha práctica que habilita a exploración compartida do pensamento.', 'Así se desenvolveron as xornadas, nas que persoas adultas e crianzas de diferentes escolas do arquipélago dos Açores, así como doutras partes do mundo, se reuniron para dialogar, explorar e construír coñecemento en comunidade.', 'É certo que poderiamos sinalar aquí múltiples aspectos positivos do desenvolvemento de prácticas de filosofía con crianzas desde unha perspectiva máis pedagóxica, como o fomento do pensamento crítico, a mellora da capacidade de diálogo ou o enriquecemento da linguaxe e da expresión; con todo, o valor desta experiencia vai máis alá destes indicadores e sitúase, sobre todo, na vivencia compartida do pensar xuntos.'],
+  },
+  {
+    title: 'O primeiro verán seibo',
+    image: 'pegada-veran.webp',
+    text: ['Xuntáronse nas Seibas un pequeno grupo de crianzas diverso. Todos nós cos nosos gustos e as nosas manías tamén. Moitos descoñecidos entre nós. Abrimos varios espazos para a libre participación, para a toma de tempos individuais no grupo. Abrimos oportunidades onde quen quería podía meterse no pequeno río que temos detrás do local, metafórica e literalmente. Abrimos un espazo tamén para a lingua galega, onde durante ese tempo debiamos ter o conxunto de nenos que máis castrapo falaba do concello de Ames. Destruíronse as diferenzas entre o espazo de lecer e a familia, convidando a esta a participar en actividades deseñadas e desenvolvidas polas propias crianzas. Permitimos que todo o seu traballo figurase no local como un recordo constante do seu esforzo diario e das súas aprendizaxes e logramos que paredes brancas tiveran vida.', 'Estamos completamente seguras que se algún día estas paredes falan, terán que contar moitas historias que estes nenos e nenas “seibos” e “seibas” viviron neste primeiro campamento.'],
+  },
+  {
+    title: 'Programa APEGO',
+    image: 'pegada-apego.webp',
+    text: ['Tivemos o luxo de poder participar dentro da necesaria iniciativa Apego, nesta ocasión no pazo da Peregrina do concello de Ames. Nel, levamos unha iniciativa onde a comunicación verbal, o emprego da lingua, é totalmente imprescindible para o debuxo xa que este pasa a ser, a través dunhas poucas cordas, nun traballo compartido onde pais, nais e fillos e fillas teñen que poñerse de acordo nas forzas que exercen sobre as mesmas en busca do obxectivo común.', 'Entender entón a lingua galega como un medio posible para a comunicación e a vinculación de experiencias, revalorizala e coidala.'],
+  },
+  {
+    title: 'As crianzas de Santa Comba andan “seibas”',
+    image: 'pegada-santa-comba.webp',
+    text: ['Presentamos ante un grupo de 10 crianzas de idades comprendidas entre os 4 e os 9 anos un espazo de exploración inmersivo e non estruturado. Isto permítelles aos nenos e ás nenas dispoñer os materiais con diferentes obxectivos e así foi como presenciamos grupos de nenos e nenas creando túneles e xogando e explorando co equilibrio-desequilibrio, coa continuidade, as pendentes e as velocidades; observamos grupos de crianzas que tenderon máis ao deseño, ao grafismo e á conexión dos seus deseños (que fixo un símil coas rúas e o tráfico); e tamén presenciamos outras crianzas que preferían accións máis individuais, de exploración de cores respecto aos sentidos e fomos cómplices tamén destes descubrimentos e do feito de compartilos, tal e como fixeron con nós cando nos veñen a contar os seus descubrimentos: “mira! Se xuntas a cor amarela e a azul vese verde!”.', 'Presenciamos tamén como na meirande parte do desenvolvemento do laboratorio, a colaboración para acadar os obxectivos individuais de cada neno se facía obrigatoria, o que implica traballar en común e equipo dende a infancia.'],
+  },
+  {
+    title: 'As Seibas na UAc',
+    image: 'pegada-uac.webp',
+    text: ['Viaxamos ata as Açores onde terá lugar en Ponta Delgada unha nova edición do encontro das Filosofâncias, unhas xornadas que nos permiten a adultas e crianzas repensar as prácticas e construír coñecemento en comunidade. Este ano o foco principal foi: “a importancia de discordar: unha práctica filosófica para unha educación democrática?”', 'E tras o desenvolvemento das xornadas e das sesións de filosofía con crianzas gustaríanos resaltar brevemente un par de aspectos:', 'Por un lado, a importancia de discordar para crear elementos novos, para transformar, para o cambio…, pero tamén a forma de discordar. Os xeitos, a voz, as posturas corporais que desprendían respecto ao outro, que denotaban un esforzo por comprender e empatizar falaron por si mesmos en canto ás condicións dese discordar para a educación democrática.', 'Por outra banda, resaltar o resultado das sesión onde podemos falar dun momento interxeracional onde adultas e crianzas construíron un diálogo en común, o cal denotou e fixo exemplo a visión que as persoas adultas alí atopadas teñen da infancia: de respecto e de valor.'],
+  },
+];
+---
+<Layout title="A nosa pegada" description="Experiencias, encontros e proxectos que forman a pegada de As Seibas.">
+  <Hero title="A nosa pegada" text="Aprendizaxes, encontros e historias que nacen cando pensamos e facemos en comunidade." compact />
+  <section class="section shell stories">
+    {stories.map((story, index) => (
+      <article class="story">
+        <picture>
+          <source srcset={`/assets/images/${story.image}`} type="image/webp" />
+          <img src={`/assets/images/${story.image.replace('.webp', '.jpg')}`} alt={`Experiencia ${story.title} de As Seibas`} width="900" height="675" loading={index === 0 ? 'eager' : 'lazy'} />
+        </picture>
+        <div>
+          <h2>{story.title}</h2>
+          {story.text.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </article>
+    ))}
+  </section>
+  <ContactBlock />
+</Layout>

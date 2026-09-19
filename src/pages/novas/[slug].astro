@@ -1,0 +1,46 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { newsItems } from '../../data/site';
+import { ArrowLeft, ExternalLink } from '@lucide/astro';
+
+export const getStaticPaths = (() => newsItems.map((item) => ({ params: { slug: item.slug }, props: { item } }))) satisfies GetStaticPaths;
+const { item } = Astro.props;
+const fallback = item.image.replace('.webp', '.jpg');
+---
+<Layout title={item.title} description={item.excerpt} image={`/assets/images/${fallback}`}>
+  <article class="news-detail">
+    <header class={`news-detail-header news-detail-header--${item.color}`}>
+      <div class="shell">
+        <a class="back-link" href="/novas/"><ArrowLeft size={18} stroke-width={1.75} aria-hidden="true" />Todas as novas</a>
+        <h1>{item.title}</h1>
+        <p class="news-detail-meta">{item.category}</p>
+      </div>
+    </header>
+    <div class="shell news-detail-grid">
+      <figure class="news-detail-image">
+        <picture>
+          <source srcset={`/assets/images/${item.image}`} type="image/webp" />
+          <img src={`/assets/images/${fallback}`} alt={item.imageAlt} width="1000" height="1000" fetchpriority="high" />
+        </picture>
+      </figure>
+      <div class="rich-text news-detail-copy">
+        <p class="lead">{item.intro}</p>
+        {item.highlights.length > 0 && (
+          <div class="news-highlights">
+            {item.highlights.map((highlight) => (
+              <section>
+                <h2>{highlight.title}</h2>
+                <p>{highlight.text}</p>
+              </section>
+            ))}
+          </div>
+        )}
+        {item.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {item.link && <a class="button button--dark" href={item.link} target="_blank" rel="noopener">{item.linkLabel}<ExternalLink size={18} stroke-width={1.75} aria-hidden="true" /></a>}
+      </div>
+    </div>
+  </article>
+  <ContactBlock />
+</Layout>

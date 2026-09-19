@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { services } from '../../data/site';
+---
+<Layout title="Servizos" description="Servizos educativos de As Seibas para crianzas e familias.">
+  <Hero title="Servizos" text="Propostas construídas dende a escoita, a flexibilidade e o respecto polos procesos de cada persoa." compact />
+  <section class="section shell">
+    <div class="services-grid services-grid--page">
+      {services.map((service) => <ServiceCard {...service} />)}
+    </div>
+    <p class="center-note">Para participar nalgún destes servizos ou para pedir máis información só tendes que contactar con nós nalgunha das opcións que ofrecemos.</p>
+  </section>
+  <ContactBlock title="Buscamos xuntas a mellor opción" />
+</Layout>
